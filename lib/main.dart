@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -7,109 +9,356 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      debugShowCheckedModeBanner: false,
+      home: const HomePage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+class HomePage extends StatelessWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Icon(
+                      Icons.location_on_outlined,
+                      color: Colors.cyan,
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text(
+                      "City",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Container(
+                      height: 35,
+                      width: 220,
+                      decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          borderRadius: BorderRadius.circular(20)),
+                      child: Center(
+                          child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            Icon(Icons.search, color: Colors.grey, size: 19),
+                            Text(
+                              "Search",
+                              style:
+                                  TextStyle(color: Colors.grey, fontSize: 15),
+                            )
+                          ],
+                        ),
+                      )),
+                    ),
+                    SizedBox(
+                      width: 4,
+                    ),
+                    Icon(
+                      Icons.moped_outlined,
+                      color: Colors.cyan,
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text(
+                      "1hour",
+                      style: TextStyle(fontSize: 18, color: Colors.cyan),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Image.asset("assets/img1.png",
+                    height: 200, width: 450, fit: BoxFit.fill),
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    fcon(
+                      img: "assets/img2.jpg",
+                      text: "Staple",
+                    ),
+                    fcon(
+                      img: "assets/img3.png",
+                      text: "Vegetable",
+                    ),
+                    fcon(
+                      img: "assets/img4.jpg",
+                      text: "Fruit",
+                    ),
+                    fcon(
+                      img: "assets/img5.jpg",
+                      text: "Dessert",
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  margin:
+                      EdgeInsets.only(left: 15, right: 20, top: 20, bottom: 20),
+                  height: 80,
+                  width: 450,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Color(0xffDDF2E9),
+                  ),
+                  child: Center(
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "SHARE AND POLITE",
+                            style: TextStyle(
+                                color: Color(0xff4C9D84),
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            "i'll pay for your expense",
+                            style: TextStyle(
+                                color: Color(0xff4C9D84), fontSize: 16),
+                          ),
+                        ]),
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("Fresh Fruit",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 18)),
+                    Row(
+                      children: [
+                        Text(
+                          "More",
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 3,
+                        ),
+                        Icon(
+                          Icons.arrow_forward_ios,
+                          color: Colors.grey,
+                          size: 15,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      fcon2(
+                        img: "assets/img6.jpg",
+                        text: "Avacado",
+                        stext: "Pure Water",
+                        amount: "\$21.9",
+                      ),
+                      fcon2(
+                        img: "assets/img7.jpg",
+                        text: "Raspberry",
+                        stext: "There are",
+                        amount: "\$32.9",
+                      ),
+                      fcon2(
+                        img: "assets/img8.png",
+                        text: "Lemon",
+                        stext: "Pure ",
+                        amount: "\$18.8",
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("Green Vegetables",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 18)),
+                    Row(
+                      children: [
+                        Text(
+                          "More",
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 3,
+                        ),
+                        Icon(
+                          Icons.arrow_forward_ios,
+                          color: Colors.grey,
+                          size: 15,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+          ),
+        ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Colors.cyan[800],
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: ""),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.shopping_cart_outlined), label: ""),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.perm_identity_outlined), label: ""),
+        ],
+      ),
+    );
+  }
+}
+
+class fcon2 extends StatelessWidget {
+  final img;
+  final String stext;
+  final String text;
+  final String amount;
+  const fcon2(
+      {Key? key,
+      required this.amount,
+      required this.img,
+      required this.stext,
+      required this.text})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(left: 15, top: 15),
+      height: 150,
+      width: 130,
+      decoration: BoxDecoration(
+        color: Color(0xffEEF4F6),
+        borderRadius: BorderRadius.circular(5),
+      ),
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.asset(
+                  img,
+                  height: 70,
+                  width: 70,
+                  fit: BoxFit.cover,
+                )),
+            SizedBox(
+              height: 4,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  text,
+                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800),
+                ),
+                Text(
+                  stext,
+                  style: TextStyle(fontSize: 8, color: Colors.black26),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text(
+                  amount,
+                  style: TextStyle(color: Colors.green),
+                ),
+                Text(
+                  "200g",
+                  style: TextStyle(color: Colors.grey),
+                ),
+              ],
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
+
+class fcon extends StatelessWidget {
+  final img;
+  final text;
+  const fcon({Key? key, required this.img, required this.text})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 100,
+      width: 80,
+      decoration: BoxDecoration(
+        color: Color(0xffEEF4F6),
+        borderRadius: BorderRadius.circular(5),
+      ),
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.asset(
+                  img,
+                  height: 50,
+                  width: 50,
+                  fit: BoxFit.cover,
+                )),
+            SizedBox(
+              height: 4,
+            ),
+            Text(
+              text,
+              style: TextStyle(color: Colors.grey),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
